@@ -1,5 +1,13 @@
 import React, { useState } from "react";
-import { Box, FormControl, FormLabel, Input, Button, Heading, Text } from "@chakra-ui/react";
+import {
+  Box,
+  FormControl,
+  FormLabel,
+  Input,
+  Button,
+  Heading,
+  Text,
+} from "@chakra-ui/react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -15,6 +23,7 @@ const RegisterPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // Validation checks
     if (!name || !email || !username || !password || !confirmPassword) {
       setError("All fields are required.");
       return;
@@ -26,22 +35,26 @@ const RegisterPage = () => {
     }
 
     try {
+<<<<<<< HEAD
       await axios.post("http://localhost:8007/users/register", {
+=======
+      // API call to register user
+      const response = await axios.post("https://geo-data-mern.onrender.com/users/register", {
+>>>>>>> c2d6a0ccf368996613f5e94c08cbbe0145b8fbdd
         name,
         email,
         username,
         password,
-        confirmPassword,
       });
-      navigate("/login");
+
+      if (response.status === 200) {
+        navigate("/login");
+      } else {
+        setError("Registration failed. Please try again.");
+      }
     } catch (error) {
       if (error.response && error.response.status === 400) {
         setError(error.response.data.message);
-        if (error.response.data.message.includes("User Already Registered")) {
-          setTimeout(() => {
-            navigate("/login");
-          }, 3000);
-        }
       } else {
         setError("Registration failed. Please try again.");
       }
@@ -49,6 +62,7 @@ const RegisterPage = () => {
   };
 
   return (
+<<<<<<< HEAD
     <Box  maxW="md"
     mx="auto"
     mt="10"
@@ -57,6 +71,10 @@ const RegisterPage = () => {
     borderRadius="lg"
     boxShadow="lg">
       <Heading mb="6" style={{textAlign:'center'}}>Register</Heading>
+=======
+    <Box maxW="sm" mx="auto" mt="10" p="6">
+      <Heading mb="6">Register</Heading>
+>>>>>>> c2d6a0ccf368996613f5e94c08cbbe0145b8fbdd
       {error && <Text color="red.500" mb="4">{error}</Text>}
       <form onSubmit={handleSubmit}>
         <FormControl mb="4">
@@ -103,9 +121,22 @@ const RegisterPage = () => {
           Register
         </Button>
       </form>
+<<<<<<< HEAD
       <p>Alreday Have an Account ?<span><Link to ="/login" className="login">Login Here</Link></span></p>
+=======
+      <Text mt="4">
+        Already have an account?{" "}
+        <Link to="/login" color="teal.500">
+          Login Here
+        </Link>
+      </Text>
+>>>>>>> c2d6a0ccf368996613f5e94c08cbbe0145b8fbdd
     </Box>
   );
 };
 
+<<<<<<< HEAD
 export default RegisterPage;
+=======
+export default RegisterPage;
+>>>>>>> c2d6a0ccf368996613f5e94c08cbbe0145b8fbdd

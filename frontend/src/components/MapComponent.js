@@ -45,7 +45,11 @@ const MapComponent = () => {
       console.log("UserID:", userId);
 
       const response = await axios.patch(
+<<<<<<< HEAD
         `http://localhost:8007/users/saveGeoJSON/${userId}`,
+=======
+        `https://geo-data-mern.onrender.com/users/saveGeoJSON/${userId}`,
+>>>>>>> c2d6a0ccf368996613f5e94c08cbbe0145b8fbdd
         { GeoJSONData: geoData },
         {
           headers: {
