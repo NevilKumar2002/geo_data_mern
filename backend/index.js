@@ -53,7 +53,7 @@ mongoose.connect(MONGO_URI, {
 });
 
 // Routes
-app.use("/api/users", userRouter);
+app.use("/users", userRouter);
 
 // Root route
 app.get("/", (req, res) => {
