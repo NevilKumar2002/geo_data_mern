@@ -1,5 +1,13 @@
 import React, { useState } from "react";
-import { Box, FormControl, FormLabel, Input, Button, Heading, Text } from "@chakra-ui/react";
+import {
+  Box,
+  FormControl,
+  FormLabel,
+  Input,
+  Button,
+  Heading,
+  Text,
+} from "@chakra-ui/react";
 import axios from "axios";
 import { Link, useNavigate } from "react-router-dom";
 
@@ -15,6 +23,7 @@ const RegisterPage = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
+    // Validation checks
     if (!name || !email || !username || !password || !confirmPassword) {
       setError("All fields are required.");
       return;
@@ -26,22 +35,22 @@ const RegisterPage = () => {
     }
 
     try {
-      await axios.post("https://geo-data-mern.onrender.com/users/register", {
+      // API call to register user
+      const response = await axios.post("https://geo-data-mern.onrender.com/users/register", {
         name,
         email,
         username,
         password,
-        confirmPassword,
       });
-      navigate("/login");
+
+      if (response.status === 200) {
+        navigate("/login");
+      } else {
+        setError("Registration failed. Please try again.");
+      }
     } catch (error) {
       if (error.response && error.response.status === 400) {
         setError(error.response.data.message);
-        if (error.response.data.message.includes("User Already Registered")) {
-          setTimeout(() => {
-            navigate("/login");
-          }, 3000);
-        }
       } else {
         setError("Registration failed. Please try again.");
       }
@@ -49,7 +58,7 @@ const RegisterPage = () => {
   };
 
   return (
-    <Box maxW="sm" mx="auto" mt="10">
+    <Box maxW="sm" mx="auto" mt="10" p="6">
       <Heading mb="6">Register</Heading>
       {error && <Text color="red.500" mb="4">{error}</Text>}
       <form onSubmit={handleSubmit}>
@@ -97,11 +106,14 @@ const RegisterPage = () => {
           Register
         </Button>
       </form>
-      <p>Alreday Have an Account ?<span><Link to ="/login">Login Here</Link></span></p>
+      <Text mt="4">
+        Already have an account?{" "}
+        <Link to="/login" color="teal.500">
+          Login Here
+        </Link>
+      </Text>
     </Box>
   );
 };
 
 export default RegisterPage;
-
-
