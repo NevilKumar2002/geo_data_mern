@@ -11,6 +11,7 @@ const router = express.Router();
 
 router.post("/register", async (req, res) => {
   const { name, email, password, confirmPassword, username } = req.body;
+  console.log(name, email, password, confirmPassword, username);
 
   try {
     await cleanUpAndValidate({ name, email, password, confirmPassword, username });

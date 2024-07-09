@@ -11,19 +11,13 @@ const MONGO_URI = process.env.MONGO_URI;
 
 // CORS options
 const corsOptions = {
-<<<<<<< HEAD
   origin: '*', 
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
   allowedHeaders:[
     'content-type',
   ],
-=======
-origin: 'https://geo-data-mern-s3w1.vercel.app', 
-  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
->>>>>>> c2d6a0ccf368996613f5e94c08cbbe0145b8fbdd
-  credentials: true // Enable credentials (cookies, authorization headers)
-};
+}
+
 
 // Middleware setup
 app.use(cors(corsOptions));
@@ -84,11 +78,8 @@ app.post("/logout", (req, res) => {
   });
 });
 
-<<<<<<< HEAD
 
-=======
-// Start server
->>>>>>> c2d6a0ccf368996613f5e94c08cbbe0145b8fbdd
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);
