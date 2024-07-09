@@ -26,7 +26,7 @@ const RegisterPage = () => {
     }
 
     try {
-      await axios.post("https://geo-data-mern-iak2.vercel.app/api/users/register", {
+      await axios.post("https://geo-data-mern-iak2.vercel.app/users/register", {
         name,
         email,
         username,
