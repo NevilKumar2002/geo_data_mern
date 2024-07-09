@@ -43,7 +43,7 @@ const LoginPage = () => {
 
     try {
       const response = await axios.post(
-        "https://geo-data-mern-nevils-projects-7b815f1c.vercel.app/api/users/login",
+        "https://geo-data-mern.vercel.app/api/users/login",
         {
           loginId,
           password,
