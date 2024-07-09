@@ -23,7 +23,7 @@ const LoginPage = () => {
     const token = localStorage.getItem("token");
     if (token) {
       axios
-        .post("https://geo-data-mern-iak2.vercel.app/users/verifyToken", { token })
+        .post("https://geo-data-mern.onrender.com/users/verifyToken", { token })
         .then((response) => {
           if (response.data.userId) {
             navigate("/dashboard");
@@ -43,7 +43,7 @@ const LoginPage = () => {
 
     try {
       const response = await axios.post(
-        "https://geo-data-mern-iak2.vercel.app/api/users/login",
+        "https://geo-data-mern.onrender.com/users/login",
         {
           loginId,
           password,
