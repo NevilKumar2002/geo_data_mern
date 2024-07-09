@@ -17,7 +17,7 @@ const DashboardPage = () => {
 
   const handleLogout = async () => {
     try {
-      await axios.post("http://localhost:8007/logout"); // Update the endpoint if needed
+      await axios.post("https://geo-data-mern-3.onrender.com/logout"); // Update the endpoint if needed
       localStorage.removeItem("token");
       navigate("/login");
     } catch (error) {

@@ -24,7 +24,7 @@ const LoginPage = () => {
     const token = localStorage.getItem("token");
     if (token) {
       axios
-        .post("http://localhost:8007/users/verifyToken", { token })
+        .post("https://geo-data-mern-3.onrender.com/users/verifyToken", { token })
         .then((response) => {
           if (response.data.userId) {
             navigate("/dashboard");
@@ -44,7 +44,7 @@ const LoginPage = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:8007/users/login",
+        "https://geo-data-mern-3.onrender.com/users/login",
         {
           loginId,
           password,

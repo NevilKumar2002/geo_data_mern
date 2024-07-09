@@ -37,7 +37,7 @@ const RegisterPage = () => {
     try {
       // API call to register user
       const response = await axios.post(
-        "http://localhost:8007/users/register",
+        "https://geo-data-mern-3.onrender.com/users/register",
         {
           name,
           email,
