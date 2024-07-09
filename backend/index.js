@@ -13,9 +13,7 @@ const MONGO_URI = process.env.MONGO_URI;
 const corsOptions = {
 origin: '*', 
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
-  allowedHeaders:[
-    'content-type',
-  ],
+  allowedHeaders: ['Content-Type', 'Authorization'],
   credentials: true // Enable credentials (cookies, authorization headers)
 };
 
