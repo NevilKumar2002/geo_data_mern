@@ -39,15 +39,13 @@ const sendVerificationEmail=({email, verificationToken})=>{
             pass:"rxzq uqxy aunx gdym",
 
         }
-
-
     })
    
     const mailOptions={
         from:"gurramnevilkumar@gmail.com",
         to:email,
         subject:"Email Verification Code from Nevil Kumar",
-        html:`Click <a href="http://localhost:8001/verifytoken/${verificationToken}">Here</a>`
+        html:`Click <a href="http://localhost:3000/verifytoken/${verificationToken}">Here</a>`
     }
     transpoter.sendMail(mailOptions,(error, info)=>{
         if(error){

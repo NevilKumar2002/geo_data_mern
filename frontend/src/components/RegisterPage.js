@@ -26,7 +26,7 @@ const RegisterPage = () => {
     }
 
     try {
-      await axios.post("https://geo-data-mern.vercel.app/api/users/register", {
+      await axios.post("http://localhost:8007/users/register", {
         name,
         email,
         username,
@@ -49,12 +49,18 @@ const RegisterPage = () => {
   };
 
   return (
-    <Box maxW="sm" mx="auto" mt="10">
-      <Heading mb="6">Register</Heading>
+    <Box  maxW="md"
+    mx="auto"
+    mt="10"
+    p="6"
+    borderWidth="1px"
+    borderRadius="lg"
+    boxShadow="lg">
+      <Heading mb="6" style={{textAlign:'center'}}>Register</Heading>
       {error && <Text color="red.500" mb="4">{error}</Text>}
       <form onSubmit={handleSubmit}>
         <FormControl mb="4">
-          <FormLabel>Name</FormLabel>
+          <FormLabel >Name</FormLabel>
           <Input
             type="text"
             value={name}
@@ -97,11 +103,9 @@ const RegisterPage = () => {
           Register
         </Button>
       </form>
-      <p>Alreday Have an Account ?<span><Link to ="/login">Login Here</Link></span></p>
+      <p>Alreday Have an Account ?<span><Link to ="/login" className="login">Login Here</Link></span></p>
     </Box>
   );
 };
 
 export default RegisterPage;
-
-

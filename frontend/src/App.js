@@ -4,6 +4,7 @@ import LoginPage from './components/LoginPage';
 import RegisterPage from './components/RegisterPage';
 import { ChakraProvider } from '@chakra-ui/react';
 import DashboardPage from './components/DashBoard';
+import "./App.css"
 
 const App = () => {
   

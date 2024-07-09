@@ -1,3 +1,4 @@
+
 import React, { useEffect, useState } from "react";
 import {
   Box,
@@ -23,7 +24,7 @@ const LoginPage = () => {
     const token = localStorage.getItem("token");
     if (token) {
       axios
-        .post("https://geo-data-mern-nevils-projects-7b815f1c.vercel.app/api/users/verifyToken", { token })
+        .post("http://localhost:8007/users/verifyToken", { token })
         .then((response) => {
           if (response.data.userId) {
             navigate("/dashboard");
@@ -43,7 +44,7 @@ const LoginPage = () => {
 
     try {
       const response = await axios.post(
-        "https://geo-data-mern.vercel.app/api/users/login",
+        "http://localhost:8007/users/login",
         {
           loginId,
           password,
@@ -71,7 +72,13 @@ const LoginPage = () => {
   };
 
   return (
-    <Box maxW="sm" mx="auto" mt="10" p="4">
+    <Box maxW="md"
+    mx="auto"
+    mt="10"
+    p="6"
+    borderWidth="1px"
+    borderRadius="lg"
+    boxShadow="lg">
       <Heading mb="6" textAlign="center">
         Login
       </Heading>
@@ -99,7 +106,7 @@ const LoginPage = () => {
       </form>
       <Text mt="4" textAlign="center">
         Don't have an account?{" "}
-        <Link to="/register" color="teal.500">
+        <Link to="/register" color="teal.500" className="login">
           Register here
         </Link>
       </Text>

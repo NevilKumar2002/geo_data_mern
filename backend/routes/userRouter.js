@@ -45,7 +45,7 @@ router.post("/register", async (req, res) => {
     await userObj.save();
 
     const verificationToken = generateJWTToken(email);
-    sendVerificationEmail({ email, verificationToken });
+    // sendVerificationEmail({ email, verificationToken });
 
     res.send("Go to Your Email, Verify Your Email");
 
