@@ -12,9 +12,10 @@ const app = express();
 
 // Middlewares
 const corsOptions = {
-  origin: 'https://geo-data-mern-in2m.vercel.app', 
-  methods: ['GET', 'POST', 'PUT', 'DELETE'],
-  allowedHeaders: ['Content-Type', 'Authorization'],
+  origin: 'https://geo-data-mern-2nj8.vercel.app', 
+  methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
+  // allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials:true
 };
 
 
