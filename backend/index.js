@@ -7,7 +7,7 @@ require("dotenv").config();
 const session = require("express-session");
 const mongoDbsession = require("connect-mongodb-session")(session);
 const userRouter = require("./routes/userRouter");
-
+const MONGO_URI='mongodb+srv://Kumar:1234567890@cluster0.y0tweds.mongodb.net/geoDataApp'
 const app = express();
 
 // Middlewares
@@ -16,11 +16,11 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 const store = new mongoDbsession({
-    uri: process.env.MONGO_URI,
+    uri: MONGO_URI,
     collection: "sessions",
 });
 
-mongoose.connect(process.env.MONGO_URI, {
+mongoose.connect(MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
