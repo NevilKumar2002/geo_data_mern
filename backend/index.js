@@ -11,8 +11,11 @@ const MONGO_URI = process.env.MONGO_URI;
 
 // CORS options
 const corsOptions = {
-  origin: 'https://geo-data-mern-2nj8.vercel.app', 
+  origin: '*', 
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
+  allowedHeaders:[
+    'content-type',
+  ],
   credentials: true // Enable credentials (cookies, authorization headers)
 };
 
