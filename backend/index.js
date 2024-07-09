@@ -1,76 +1,80 @@
 const express = require("express");
 const mongoose = require('mongoose');
 const cors = require("cors");
-const bcrypt = require('bcrypt');
-const jwt = require('jsonwebtoken');
-require("dotenv").config();
 const session = require("express-session");
-const mongoDbsession = require("connect-mongodb-session")(session);
+const MongoDbSession = require("connect-mongodb-session")(session);
 const userRouter = require("./routes/userRouter");
-const MONGO_URI='mongodb+srv://Kumar:1234567890@cluster0.y0tweds.mongodb.net/geoDataApp'
-const app = express();
+require("dotenv").config();
 
-// Middlewares
+const app = express();
+const MONGO_URI = process.env.MONGO_URI;
+
+// CORS options
 const corsOptions = {
   origin: 'https://geo-data-mern-2nj8.vercel.app', 
   methods: ['GET', 'POST', 'PUT', 'DELETE', 'PATCH'],
-  // allowedHeaders: ['Content-Type', 'Authorization'],
-  credentials:true
+  credentials: true // Enable credentials (cookies, authorization headers)
 };
 
-
+// Middleware setup
 app.use(cors(corsOptions));
-// app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-const store = new mongoDbsession({
-    uri: MONGO_URI,
-    collection: "sessions",
+// MongoDB session store setup
+const store = new MongoDbSession({
+  uri: MONGO_URI,
+  collection: "sessions",
 });
 
+// Session middleware setup
+app.use(
+  session({
+    secret: process.env.SESSION_SECRET || "secret", // Replace with a strong secret
+    resave: false,
+    saveUninitialized: false,
+    store: store, // MongoDB session store instance
+  })
+);
+
+// MongoDB connection
 mongoose.connect(MONGO_URI, {
   useNewUrlParser: true,
   useUnifiedTopology: true,
 })
-  .then(() => {
-    console.log("MongoDB connected successfully");
-  })
-  .catch(err => {
-    console.error("MongoDB connection error:", err.message);
-  });
+.then(() => {
+  console.log("MongoDB connected successfully");
+})
+.catch(err => {
+  console.error("MongoDB connection error:", err.message);
+});
 
-app.use(
-    session({
-        secret: "Hello World",
-        resave: false,
-        saveUninitialized: false,
-        store: store,
-    })
-);
-
+// Routes
 app.use("/api/users", userRouter);
 
+// Root route
 app.get("/", (req, res) => {
-    res.send("Welcome to Application");
+  res.send("Welcome to the Application");
 });
 
+// Logout route
 app.post("/logout", (req, res) => {
-    req.session.destroy((err) => {
-        if (err) {
-            return res.status(500).send({
-                status: 500,
-                message: "Logout failed",
-                error: err.message,
-            });
-        }
-        res.clearCookie(process.env.SESSION_NAME);
-        res.send({
-            status: 200,
-            message: "Logout successful",
-        });
+  req.session.destroy((err) => {
+    if (err) {
+      return res.status(500).send({
+        status: 500,
+        message: "Logout failed",
+        error: err.message,
+      });
+    }
+    res.clearCookie(process.env.SESSION_NAME);
+    res.send({
+      status: 200,
+      message: "Logout successful",
     });
+  });
 });
+
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
