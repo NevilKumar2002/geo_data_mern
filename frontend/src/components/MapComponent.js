@@ -45,7 +45,7 @@ const MapComponent = () => {
       console.log("UserID:", userId);
 
       const response = await axios.patch(
-        `https://geo-data-mern-cs6m.vercel.app/users/saveGeoJSON/${userId}`,
+        `https://geo-data-mern-nevils-projects-7b815f1c.vercel.app/users/saveGeoJSON/${userId}`,
         { GeoJSONData: geoData },
         {
           headers: {
