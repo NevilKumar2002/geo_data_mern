@@ -11,7 +11,15 @@ const MONGO_URI='mongodb+srv://Kumar:1234567890@cluster0.y0tweds.mongodb.net/geo
 const app = express();
 
 // Middlewares
-app.use(cors());
+const corsOptions = {
+  origin: 'https://geo-data-mern-in2m.vercel.app', 
+  methods: ['GET', 'POST', 'PUT', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+};
+
+
+app.use(cors(corsOptions));
+// app.use(cors());
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
